@@ -22,8 +22,10 @@ export default function About() {
                 <p className="mb-4">Advogada com mais de 10 anos de experiência em direito da tecnologia, especializada em proteção de dados pessoais (LGPD), contratos digitais e mediação de conflitos online.</p>
                 <p className="mb-4">Atuo com uma abordagem humanizada e tecnológica, oferecendo soluções jurídicas ágeis e eficazes para empresas e pessoas físicas.</p>
               </div>
-              <aside className="mt-8 p-4 bg-yellow-50 border-l-4 border-gold rounded-r-lg" role="note">
-                <p className="text-sm text-gray-700"><strong>Nota Importante:</strong> Conforme orientação da OAB, nenhuma informação neste site constitui um testemunho de sucesso garantido. Cada caso é analisado individualmente.</p>
+              <aside className="mt-8 p-6 bg-gold/5 rounded-lg" role="note">
+                <p className="text-sm text-gray-700">
+                  <strong>Nota Importante:</strong> Conforme orientação da OAB, nenhuma informação neste site constitui um testemunho de sucesso garantido. Cada caso é analisado individualmente.
+                </p>
               </aside>
             </div>
           </div>

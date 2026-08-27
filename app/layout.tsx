@@ -1,12 +1,12 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
+import { DM_Sans, Cormorant_Garamond } from 'next/font/google';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AccessibilityWidget from '../components/AccessibilityWidget';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', weight: ['300','400','500','600','700','800'] });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap', weight: ['400','500','600','700','800'] });
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap', weight: ['400', '500', '600', '700'] });
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-display', display: 'swap', weight: ['400', '500', '600', '700'] });
 
 export const metadata: Metadata = {
   title: { default: 'Advogada Especialista em Direito da Tecnologia | LGPD e Compliance', template: '%s | Advogada Tech' },
@@ -22,8 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className="scroll-smooth">
       <head>
         <meta name="theme-color" content="#D4AF37" />
+        <meta name="color-scheme" content="light" />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} font-sans bg-white text-gray-700 antialiased`} data-font-size="normal" data-contrast="normal">
+      <body className={`${dmSans.variable} ${cormorant.variable} font-sans bg-white text-gray-700 antialiased`} data-font-size="normal" data-contrast="normal">
         <a href="#main-content" className="skip-link">Pular para o conteúdo principal</a>
         <Header />
         <main id="main-content" className="pt-16">{children}</main>
