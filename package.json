@@ -1,0 +1,24 @@
+{
+  "name": "advogada-tecnologia",
+  "version": "1.0.0",
+  "description": "Landing page premium para advogada especializada em tecnologia - Next.js 15 + Acessibilidade WCAG 2.1 AA",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.1.0",
+    "autoprefixer": "^10.4.0",
+    "next": "15.3.3",
+    "postcss": "^8.4.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "typescript": "^5.6.0"
+  }
+}

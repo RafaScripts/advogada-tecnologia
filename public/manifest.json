@@ -1,0 +1,16 @@
+{
+  "name": "Advogada Especialista em Tecnologia",
+  "short_name": "Advogada Tech",
+  "description": "Advogada especializada em LGPD, contratos digitais e mediação tecnológica",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#D4AF37",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+ * WCAG 2.1 AA Base Styles
+ * All interactive elements must meet 4.5:1 contrast ratio
+ * ============================================================ */
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion support (WCAG 2.1: prefers-reduced-motion) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High-contrast focus indicator (WCAG 2.1 AA: visible focus, >= 3:1 contrast) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-accent;
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* Ensure focus rings are visible on all backgrounds */
+*:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard users (WCAG 2.1 AA: bypass blocks) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  z-index: 100;
+  padding: 8px 16px;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+.skip-link:focus-visible {
+  outline: 3px solid #0f172a;
+  outline-offset: 2px;
+}
+
+/* Visually hidden utility (WCAG 2.1 AA: screen reader only content) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ensure sufficient touch targets (WCAG 2.1: minimum 44px by 44px) */
+@media (hover: none) and (pointer: coarse) {
+  button, a[role="button"], .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Link styles with accessible underline on hover/focus */
+a {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus-visible {
+  color: #06b6d4;
+  text-decoration-thickness: 2px;
+}
+
+/* Form input focus styles */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px #38bdf840;
+}
+
+/* High contrast mode support (WCAG 2.1: forced-colors) */
+@media (forced-colors: active) {
+  * {
+    border: 1px solid canvasText;
+    forced-color-adjust: auto;
+  }
+}
