@@ -1,60 +1,71 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { SunIcon, MoonIcon, MagnifyingGlassPlusIcon, AdjustmentsVerticalIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassPlusIcon, AdjustmentsVerticalIcon, ArrowsUpDownIcon } from '@heroicons/react/24/outline'
 
 export default function AccessibilityWidget() {
   const [mounted, setMounted] = useState(false)
-  const [fontSize, setFontSize] = useState<'normal' | 'large'>('normal')
-  const [contrast, setContrast] = useState<'normal' | 'high'>('normal')
-  const [darkMode, setDarkMode] = useState(false)
+  const [fontSize, setFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal')
+  const [contrast, setContrast] = useState<'normal' | 'max'>('normal')
+  const [spacing, setSpacing] = useState<'normal' | 'large'>('normal')
 
   useEffect(() => {
     setMounted(true)
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.body.classList.add('reduce-motion')
     }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true)
-      document.body.classList.add('dark')
-    }
   }, [])
 
   const toggleFontSize = () => {
-    const newSize = fontSize === 'normal' ? 'large' : 'normal'
+    const newSize = fontSize === 'normal' ? 'large' : fontSize === 'large' ? 'xlarge' : 'normal'
     setFontSize(newSize)
-    document.body.setAttribute('data-font-size', newSize)
+    
+    // Apply font sizes directly to root HTML for rem scaling
+    const html = document.documentElement
+    if (newSize === 'normal') html.style.fontSize = '100%'
+    if (newSize === 'large') html.style.fontSize = '120%'
+    if (newSize === 'xlarge') html.style.fontSize = '150%'
   }
 
   const toggleContrast = () => {
-    const newContrast = contrast === 'normal' ? 'high' : 'normal'
+    const newContrast = contrast === 'normal' ? 'max' : 'normal'
     setContrast(newContrast)
-    document.body.setAttribute('data-contrast', newContrast)
+    
+    if (newContrast === 'max') {
+      document.body.style.filter = 'contrast(1.5) grayscale(1)'
+    } else {
+      document.body.style.filter = 'none'
+    }
   }
 
-  const toggleTheme = () => {
-    const newDarkMode = !darkMode
-    setDarkMode(newDarkMode)
-    if (newDarkMode) document.body.classList.add('dark')
-    else document.body.classList.remove('dark')
+  const toggleSpacing = () => {
+    const newSpacing = spacing === 'normal' ? 'large' : 'normal'
+    setSpacing(newSpacing)
+    
+    if (newSpacing === 'large') {
+      document.body.style.lineHeight = '2'
+      document.body.style.letterSpacing = '0.05em'
+    } else {
+      document.body.style.lineHeight = ''
+      document.body.style.letterSpacing = ''
+    }
   }
 
   if (!mounted) return null
 
   return (
-    <aside className="fixed bottom-6 right-6 z-50 bg-white shadow-xl rounded-xl p-4 border border-gray-200 max-w-xs" aria-label="Ferramentas de acessibilidade" role="complementary">
-      <h3 className="sr-only">Ferramentas de acessibilidade</h3>
-      <div className="grid grid-cols-3 gap-2">
-        <button onClick={toggleFontSize} className="p-2 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" aria-label="Alternar tamanho do texto" title="Alternar tamanho do texto">
-          <MagnifyingGlassPlusIcon className="w-5 h-5 text-gray-700 mx-auto" />
+    <aside className="fixed bottom-6 right-6 z-50 bg-surface shadow-card border border-border p-3 max-w-xs" aria-label="Ferramentas de acessibilidade" role="complementary">
+      <h3 className="sr-only">Painel de Acessibilidade</h3>
+      <div className="flex space-x-2">
+        <button onClick={toggleFontSize} className="p-3 bg-background border border-border hover:border-gold rounded-none focus:outline-none focus:ring-2 focus:ring-gold transition-colors group" aria-label="Aumentar tamanho do texto" title="Aumentar tamanho do texto">
+          <MagnifyingGlassPlusIcon className="w-6 h-6 text-text group-hover:text-gold" />
         </button>
-        <button onClick={toggleContrast} className="p-2 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" aria-label="Alternar contraste alto" title="Alternar contraste alto">
-          <AdjustmentsVerticalIcon className="w-5 h-5 text-gray-700 mx-auto" />
+        <button onClick={toggleContrast} className="p-3 bg-background border border-border hover:border-gold rounded-none focus:outline-none focus:ring-2 focus:ring-gold transition-colors group" aria-label="Ativar contraste máximo (preto e branco)" title="Ativar contraste máximo">
+          <AdjustmentsVerticalIcon className="w-6 h-6 text-text group-hover:text-gold" />
         </button>
-        <button onClick={toggleTheme} className="p-2 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold" aria-label={darkMode ? "Tema claro" : "Tema escuro"}>
-          {darkMode ? <SunIcon className="w-5 h-5 text-gray-700 mx-auto" /> : <MoonIcon className="w-5 h-5 text-gray-700 mx-auto" />}
+        <button onClick={toggleSpacing} className="p-3 bg-background border border-border hover:border-gold rounded-none focus:outline-none focus:ring-2 focus:ring-gold transition-colors group" aria-label="Aumentar espaçamento do texto" title="Aumentar espaçamento">
+          <ArrowsUpDownIcon className="w-6 h-6 text-text group-hover:text-gold" />
         </button>
       </div>
-      <p className="text-xs text-gray-500 mt-3 text-center">Acessibilidade WCAG 2.1 AA</p>
     </aside>
   )
 }
