@@ -14,10 +14,10 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Link href="#contato" className="inline-block bg-gold hover:bg-gold-hover text-white px-8 py-4 rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 text-center shadow-md hover:shadow-xl" aria-label="Agendar uma consulta inicial gratuita">
+            <Link href="#contato" className="inline-block bg-gold hover:bg-gold-hover text-white px-8 py-4 rounded-md font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 text-center shadow-sm hover:shadow-xl" aria-label="Agendar uma consulta inicial gratuita">
               Agende uma consulta
             </Link>
-            <Link href="#servicos" className="inline-block border border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-4 rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 text-center">
+            <Link href="#servicos" className="inline-block border border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-4 rounded-md font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 text-center">
               Conheça meus serviços
             </Link>
           </div>
